@@ -3,7 +3,9 @@
 use App\Http\Controllers\Api\V1\Dashboard\JobController;
 use App\Http\Controllers\Api\V1\Dashboard\LocationController;
 use App\Http\Controllers\Api\V1\Dashboard\ManagementController;
+use App\Http\Controllers\Api\V1\Dashboard\OurStoryController;
 use App\Http\Controllers\Api\V1\Dashboard\ProjectStatusController;
+use App\Http\Controllers\Api\V1\Dashboard\WhySalmonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\HomeController;
@@ -38,20 +40,22 @@ Route::get('/clear', [SystemController::class, 'clear']);
 // Public route api/v1/projects
 Route::get('/projects', [ProjectController::class, 'projects']);
 Route::get('/project/{id}', [ProjectController::class, 'project']);
-Route::get('/members', [MemberController::class, 'members']);
-Route::get('/member/{id}', [MemberController::class, 'member']);
+Route::get('/boardofdirectors', [MemberController::class, 'members']);
+Route::get('/boardofdirector/{id}', [MemberController::class, 'member']);
 Route::get('/management-members', [ManagementController::class, 'managements']);
 Route::get('/management-member/{id}', [ManagementController::class, 'management']);
-Route::get('/locations', [LocationController::class, 'locations']);
-Route::get('/location/{id}', [LocationController::class, 'location']);
-Route::get('/project-statuses', [ProjectStatusController::class, 'ProjectStatuses']);
-Route::get('/project-status/{id}', [ProjectStatusController::class, 'ProjectStatus']);
+// Route::get('/locations', [LocationController::class, 'locations']);
+// Route::get('/location/{id}', [LocationController::class, 'location']);
+// Route::get('/project-statuses', [ProjectStatusController::class, 'ProjectStatuses']);
+// Route::get('/project-status/{id}', [ProjectStatusController::class, 'ProjectStatus']);
 Route::get('/categories', [CategoryController::class, 'categories']);
 Route::get('/blogs', [BlogController::class, 'blogs']);
 Route::get('/blog/{id}', [BlogController::class, 'blog']);
 Route::get('/homepage', [\App\Http\Controllers\Api\V1\Dashboard\HomeController::class, 'homePage']);
 Route::post("/jobs/applicants/dropcv",[JobController::class,"dropCV"])->name("job.applicant.dropcv");
-Route::get('/careers', [JobController::class, 'career']);
+Route::get('/careers', [JobController::class, 'career'])->name("job.career");
+Route::get('/our-story', [OurStoryController::class, 'ourStory'])->name("ourstory");
+Route::get('/why-salmon', [WhySalmonController::class, 'whySalmon'])->name("whysalmon");
 
 
 //  /api/v1/auth name='api.v1.'

@@ -37,7 +37,7 @@ class BlogController extends Controller
             ], 404);
         }
 
-        
+
         return response()->json([
             'status' => 'success',
             'project' => $project,
