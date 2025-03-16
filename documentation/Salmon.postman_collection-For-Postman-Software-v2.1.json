@@ -1,0 +1,2161 @@
+{
+	"info": {
+		"_postman_id": "77806609-b170-4fe3-9638-9b18a444df20",
+		"name": "Salmon",
+		"description": "**This is a backend for salmon company**\n\nChange the host and others environment variable from postmen or set\n\n**There are some of variables are dynamic**\n\nImport the environment variable and change the host and others variable no need to change all others variable are totally dynamic auto set while use.\n\n##### Developed by\n\nAl Mamun - asifulmamun\n\n[https://asifulmamun.info.bd](https://asifulmamun.info.bd)\n\n[hello@asifulmamun.info](https://mailto:hello@asifulmamun.info). bd\n\n+8801721600688 (WhatsApp)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17512673",
+		"_collection_link": "https://www.postman.com/technical-observer-43900710/workspace/salmon/collection/17512673-77806609-b170-4fe3-9638-9b18a444df20?action=share&source=collection_link&creator=17512673"
+	},
+	"item": [
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "cache_clear",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/clear",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "home",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/projects?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Parameter page = 1\n\npage=2\n\npage=3\n\npage number will show the next next etc data"
+					},
+					"response": []
+				},
+				{
+					"name": "Single_Project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"let project_id = response.project.id ? response.project.id : '';\r",
+									"pm.environment.set('project_id', project_id);\r",
+									"console.log(project_id)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/project/{{project_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"{{project_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Members",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/members?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"members"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Parameter page = 1\n\npage=2\n\npage=3\n\npage number will show the next next etc data"
+					},
+					"response": []
+				},
+				{
+					"name": "Single_Member",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"let member_id = response.data.id ? response.data.id : '';\r",
+									"pm.environment.set('member_id', member_id);\r",
+									"console.log(member_id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/member/{{member_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"member",
+								"{{member_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/categories?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Parameter page = 1\n\npage=2\n\npage=3\n\npage number will show the next next etc data"
+					},
+					"response": []
+				},
+				{
+					"name": "Blogs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/blogs?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"blogs"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Parameter page = 1\n\npage=2\n\npage=3\n\npage number will show the next next etc data"
+					},
+					"response": []
+				},
+				{
+					"name": "Single_blog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"let project_id = response.project.id ? response.project.id : '';\r",
+									"pm.environment.set('project_id', project_id);\r",
+									"console.log(project_id)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/blog/{{blog_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"blog",
+								"{{blog_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"let token = response.access_token ? 'Bearer ' + response.access_token : '';\r",
+									"pm.environment.set('auth_token', token);\r",
+									"// console.log(token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "salmon@salmondevelopersbd.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "#Salmon2025",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "666666",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"let token = response.access_token ? 'Bearer ' + response.access_token : '';\r",
+									"pm.environment.set('auth_token', token);\r",
+									"// console.log(token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/v1/auth/logout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dash",
+			"item": [
+				{
+					"name": "Files",
+					"item": [
+						{
+							"name": "GetFile",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let file_id = response.data.id ? response.data.id : '';\r",
+											"pm.environment.set('file_id', file_id);\r",
+											"// console.log(response.data.id)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/file/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"file",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateFile",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let file_id = response.data.id ? response.data.id : '';\r",
+											"pm.environment.set('file_id', file_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/accou/Downloads/Al Mamun 2022 300sqr.JPG"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "new_path",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/file/{{file_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"file",
+										"{{file_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DisableFile",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let file_id = response.file_id ? response.file_id : '';\r",
+											"pm.environment.set('file_id', file_id);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/accou/Downloads/Al Mamun 2022 300sqr.JPG"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "new_path",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/file/{{file_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"file",
+										"{{file_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteFile",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/file/{{file_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"file",
+										"{{file_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Settings",
+					"item": [
+						{
+							"name": "CreateOrUpdateSettings",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "site_name",
+											"value": "Salmon Site Web",
+											"type": "text"
+										},
+										{
+											"key": "TotalAreaBuilt",
+											"value": "6M+ Data",
+											"type": "text"
+										},
+										{
+											"key": "NumberofProjects",
+											"value": "1000+",
+											"type": "text"
+										},
+										{
+											"key": "Years_Since_Inception",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "Happy_Clients",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "Number_Of_Completed_Projects",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "Total_Area_in_Pipeline",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/settings/data",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"settings",
+										"data"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UserInfoUpdate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "salmon_update",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "salmon@salmondevelopersbd.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "666666",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/settings/user_info",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"settings",
+										"user_info"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Projects",
+					"item": [
+						{
+							"name": "ProjectStore",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let project_id = response.project_id ? response.project_id : '';\r",
+											"pm.environment.set('project_id', project_id);\r",
+											"console.log(project_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Greenfield Commercial Complex",
+											"type": "text"
+										},
+										{
+											"key": "sub_title",
+											"value": "A hub for business growth",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2025-01-20T10:00:00",
+											"type": "text"
+										},
+										{
+											"key": "target_to_complete_date",
+											"value": "2025-12-31T17:00:00",
+											"type": "text"
+										},
+										{
+											"key": "completion_date",
+											"value": "2025-12-31T17:00:00",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "Downtown, Springfield",
+											"type": "text"
+										},
+										{
+											"key": "landmark_lat_long",
+											"value": "{\"latitude\": 40.712776,\"longitude\": -74.005974}",
+											"type": "text"
+										},
+										{
+											"key": "project_extra_data",
+											"value": "{\"budget\": \"10M USD\",\"architect\":\"John Doe & Co.\"}",
+											"type": "text"
+										},
+										{
+											"key": "videos",
+											"value": "[\"https://example.com/video1.mp4\", \"https://example.com/video2.mp4\"]",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "This project is a state-of-the-art commercial complex designed to attract businesses of all sizes",
+											"type": "text"
+										},
+										{
+											"key": "thumbnail",
+											"description": "max 2mb",
+											"type": "file",
+											"src": "/C:/Users/accou/Downloads/Al Mamun 2022 300sqr.JPG"
+										},
+										{
+											"key": "images[]",
+											"description": "max 2mb",
+											"type": "file",
+											"src": [
+												"/C:/Users/accou/Downloads/Al Mamun Signature 300 80.JPG",
+												"/C:/Users/accou/Downloads/Al Mamun 2022 300sqr.JPG"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/project/store",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"project",
+										"store"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ProjectUpdate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let project_id = response.project_id ? response.project_id : '';\r",
+											"pm.environment.set('project_id', project_id);\r",
+											"console.log(project_id)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "The tititltdfdf",
+											"type": "text"
+										},
+										{
+											"key": "sub_title",
+											"value": "A hub for business growth",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2025-01-20T10:00:00",
+											"type": "text"
+										},
+										{
+											"key": "target_to_complete_date",
+											"value": "2025-12-31T17:00:00",
+											"type": "text"
+										},
+										{
+											"key": "completion_date",
+											"value": "2025-12-31T17:00:00",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "Downtown, Springfield",
+											"type": "text"
+										},
+										{
+											"key": "landmark_lat_long",
+											"value": "{\"latitude\": 40.712776,\"longitude\": -74.005974}",
+											"type": "text"
+										},
+										{
+											"key": "project_extra_data",
+											"value": "{\"budget\": \"10M USD\",\"architect\":\"John Doe & Co.\"}",
+											"type": "text"
+										},
+										{
+											"key": "videos",
+											"value": "[\"https://example.com/video1.mp4\", \"https://example.com/video2.mp4\"]",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "This project is a state-of-the-art commercial complex designed to attract businesses of all sizes",
+											"type": "text"
+										},
+										{
+											"key": "thumbnail",
+											"type": "file",
+											"src": "/C:/Users/accou/Downloads/Al Mamun 2022 300sqr.JPG"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/project/update/{{project_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"project",
+										"update",
+										"{{project_id}}"
+									]
+								},
+								"description": "For individual gallery image or file upload just update from Files Rolder of route in postman"
+							},
+							"response": []
+						},
+						{
+							"name": "ProjectDelete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// let response = pm.response.json();\r",
+											"// let project_id = response.project_id ? response.project_id : '';\r",
+											"// pm.environment.set('project_id', project_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/project/delete/{{project_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"project",
+										"delete",
+										"{{project_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Members",
+					"item": [
+						{
+							"name": "MemberStore",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let member_id = response.member_id ? response.member_id : '';\r",
+											"pm.environment.set('member_id', member_id);\r",
+											"// console.log(response.member_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "The name",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "position",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "designation",
+											"value": "CEO",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "member1@example.com",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "011111111",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/accou/Downloads/Al Mamun 2022 300sqr.JPG"
+										},
+										{
+											"key": "description",
+											"value": "The desc",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/member/store",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"member",
+										"store"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "MemberUpdate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let member_id = response.member_id ? response.member_id : '';\r",
+											"pm.environment.set('member_id', member_id);\r",
+											"// console.log(response.member_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name updated",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "position",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "designation",
+											"value": "CEO",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "member1@example.com",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "011111111",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/accou/Downloads/Al Mamun 2022 300sqr.JPG"
+										},
+										{
+											"key": "description",
+											"value": "The desc",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/member/update/{{member_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"member",
+										"update",
+										"{{member_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "MemberDelete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// let response = pm.response.json();\r",
+											"// let project_id = response.project_id ? response.project_id : '';\r",
+											"// pm.environment.set('project_id', project_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/member/delete/{{member_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"member",
+										"delete",
+										"{{member_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "CategoryStore",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let cat_id = response.id ? response.id : '';\r",
+											"pm.environment.set('category_id', cat_id);\r",
+											"console.log(cat_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "The cat",
+											"type": "text"
+										},
+										{
+											"key": "slug",
+											"value": "the_cat",
+											"type": "text"
+										},
+										{
+											"key": "thumbnail",
+											"type": "file",
+											"src": "/C:/Users/accou/Downloads/HSC Certificate.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/category/store",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"category",
+										"store"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CategoryUpdate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let cat_id = response.id ? response.id : '';\r",
+											"pm.environment.set('category_id', cat_id);\r",
+											"console.log(cat_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "The cat update",
+											"type": "text"
+										},
+										{
+											"key": "slug",
+											"value": "the_cat_update",
+											"type": "text"
+										},
+										{
+											"key": "thumbnail",
+											"type": "file",
+											"src": "/C:/Users/accou/Downloads/Al Mamun Signature 300 80.JPG"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/category/update/{{category_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"category",
+										"update",
+										"{{category_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ProjectDelete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// let response = pm.response.json();\r",
+											"// let project_id = response.project_id ? response.project_id : '';\r",
+											"// pm.environment.set('project_id', project_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/category/delete/{{category_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"category",
+										"delete",
+										"{{category_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Blogs",
+					"item": [
+						{
+							"name": "BlogStore",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let blog_id = response.data.id ? response.data.id : '';\r",
+											"pm.environment.set('blog_id', blog_id);\r",
+											"console.log(blog_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Blog Title",
+											"type": "text"
+										},
+										{
+											"key": "slug",
+											"value": "slug_one",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "The Content",
+											"type": "text"
+										},
+										{
+											"key": "categories",
+											"value": "[\"slug_one\",\"slug_two\"]",
+											"description": "json- get from categorys table and - add the category slug here example ['slug_one','slug_two']",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "tags1,tags2,tags3",
+											"type": "text"
+										},
+										{
+											"key": "thumbnail",
+											"type": "file",
+											"src": "/C:/Users/accou/Downloads/Al Mamun 2022 300sqr.JPG"
+										},
+										{
+											"key": "images[]",
+											"type": "file",
+											"src": [
+												"/C:/Users/accou/Downloads/Al Mamun Signature 300 80.JPG",
+												"/C:/Users/accou/Downloads/Al Mamun 2022 300sqr.JPG"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/blog/store",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"blog",
+										"store"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BlogUpdate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();\r",
+											"let blog_id = response.blog_id ? response.blog_id : '';\r",
+											"pm.environment.set('blog_id', blog_id);\r",
+											"console.log(blog_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Blog Title Updated",
+											"type": "text"
+										},
+										{
+											"key": "slug",
+											"value": "slug_one",
+											"description": "not required",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "The Content",
+											"type": "text"
+										},
+										{
+											"key": "categories",
+											"value": "[\"slug_one\",\"slug_two\"]",
+											"description": "json- get from categorys table and - add the category slug here example ['slug_one','slug_two']",
+											"type": "text"
+										},
+										{
+											"key": "tags",
+											"value": "tags1,tags2,tags3",
+											"type": "text"
+										},
+										{
+											"key": "thumbnail",
+											"type": "file",
+											"src": "/C:/Users/accou/Downloads/Al Mamun 2022 300sqr.JPG"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/blog/update/{{blog_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"blog",
+										"update",
+										"{{blog_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "BlogDelete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// let response = pm.response.json();\r",
+											"// let project_id = response.project_id ? response.project_id : '';\r",
+											"// pm.environment.set('project_id', project_id);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/dashboard/blog/delete/{{blog_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"dashboard",
+										"blog",
+										"delete",
+										"{{blog_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

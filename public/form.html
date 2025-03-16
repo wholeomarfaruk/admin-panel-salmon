@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenfield Commercial Complex Submission</title>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent form from submitting traditionally
+
+            const formData = new FormData(event.target);
+
+            fetch('http://salmon.test/api/v1/dashboard/project/data', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer 7|RGIM3myPB27CgZH3xjEL1euQbFIpOI4cZUT66a7I0e440091'
+                },
+                body: formData
+            })
+            .then(response => {
+                if (response.headers.get('content-type')?.includes('application/json')) {
+                    return response.json();
+                } else {
+                    return response.text().then(text => { console.error('Invalid JSON response:', text); throw new Error('Invalid JSON response'); });
+                }
+            })
+            .then(data => {
+                console.log('Success:', data);
+                alert('Project submitted successfully!');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error submitting project.');
+            });
+        }
+    </script>
+</head>
+<body>
+    <form action="http://salmon.test/api/v1/dashboard/project/data" method="POST" enctype="multipart/form-data" onsubmit="handleFormSubmit(event)">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="Greenfield Commercial Complex" required><br><br>
+
+        <label for="sub_title">Sub-title:</label>
+        <input type="text" id="sub_title" name="sub_title" value="A hub for business growth" required><br><br>
+
+        <label for="status">Status:</label>
+        <input type="number" id="status" name="status" value="1" required><br><br>
+
+        <label for="type">Type:</label>
+        <input type="number" id="type" name="type" value="1" required><br><br>
+
+        <!-- <label for="start_date">Start Date:</label>
+        <input type="datetime-local" id="start_date" name="start_date" value="2025-01-20T10:00:00" required><br><br>
+
+        <label for="target_to_complete_date">Target to Complete Date:</label>
+        <input type="datetime-local" id="target_to_complete_date" name="target_to_complete_date" value="2025-12-31T17:00:00" required><br><br>
+
+        <label for="completion_date">Completion Date:</label>
+        <input type="datetime-local" id="completion_date" name="completion_date" value="2025-12-31T17:00:00" required><br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" value="Downtown, Springfield" required><br><br>
+
+        <label for="landmark_lat_long">Landmark (Latitude, Longitude):</label>
+        <input type="text" id="landmark_lat_long" name="landmark_lat_long" value='{"latitude": 40.712776,"longitude": -74.005974}' required><br><br>
+
+        <label for="project_extra_data">Project Extra Data:</label>
+        <input type="text" id="project_extra_data" name="project_extra_data" value='{"budget": "10M USD","architect":"John Doe & Co."}' required><br><br>
+
+        <label for="videos">Videos:</label>
+        <input type="text" id="videos" name="videos[]" value="https://example.com/video1.mp4" required><br>
+        <input type="text" id="videos" name="videos[]" value="https://example.com/video2.mp4" required><br><br> -->
+
+        <!-- <label for="description">Description:</label>
+        <textarea id="description" name="description" required>This project is a state-of-the-art commercial complex designed to attract businesses of all sizes</textarea><br><br> -->
+
+        <label for="images">Images:</label>
+        <input type="file" id="images" name="images[]" accept="image/*" multiple required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
