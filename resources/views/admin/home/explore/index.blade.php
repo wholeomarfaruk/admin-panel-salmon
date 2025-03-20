@@ -77,7 +77,7 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Project</th>
-                                    <th>Address</th>
+
                                     <th>Action</th>
 
                                 </tr>
@@ -100,9 +100,7 @@
                                     <td >
                                         {{ $item->project->title }}
                                     </td>
-                                    <td >
-                                        {{ $item->address }}
-                                    </td>
+                                  
 
                                     <td>
                                         <div class="list-icon-function">

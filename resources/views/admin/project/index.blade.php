@@ -105,7 +105,7 @@
 
 
                                         <td>
-                                            {{ \App\Enums\ProjectType::tryFrom($project->project_type)->name ?? "N/A"}}
+                                            {{ $project->building_type }}
                                         </td>
                                         <td>{{ $project->location }}</td>
                                         <td>

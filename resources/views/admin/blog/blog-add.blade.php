@@ -42,8 +42,19 @@
                         <input class="flex-grow @error('title') is-invalid @enderror" type="text"
                             placeholder="Blog title" name="title" tabindex="0" aria-required="true"
                             value="{{ old('title') }}" required autocomplete="name" autofocus
-                            >
+                             onkeyup="stringtoSlug(this.value)">
                         @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </fieldset>
+                    <fieldset class="name">
+                        <div class="body-title">Slug <span class="tf-color-1">*</span></div>
+                        <input class="flex-grow @error('slug') is-invalid @enderror" type="text" placeholder="Slug"
+                            name="slug" tabindex="0" value="{{ old('slug') }}"  onchange="stringtoSlug(this.value)" required autocomplete="name"
+                            autofocus id="slug_input" >
+                        @error('slug')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -95,7 +106,7 @@
                     <fieldset class="name">
                         <div class="body-title">{{ __('Tags') }} <span class="tf-color-1">*</span></div>
                         <input id="tags" class="flex-grow @error('tags') is-invalid @enderror" type="text" placeholder="Tags"
-                            name="tags" tabindex="0" aria-required="true" value="{{ old('tags') }}" required
+                            name="tags" tabindex="0" aria-required="true" value="{{ old('tags') }}"
                             autocomplete="tags" autofocus >
                         @error('tags')
                             <span class="invalid-feedback" role="alert">
@@ -105,7 +116,7 @@
                     </fieldset>
 
                     <fieldset>
-                        <div class="body-title">{{ __('Thumbnail') }} <span class="tf-color-1">*</span></div>
+                        <div class="body-title">{{ __('Thumbnail') }} <span class="tf-color-1"></span></div>
                         <div class="upload-image flex-grow">
                             <div class="item" id="imgpreview-thumbnail" style="display:none">
                                 <img src="" class="effect8" alt="">

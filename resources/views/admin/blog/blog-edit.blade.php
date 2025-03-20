@@ -39,7 +39,7 @@
                         <input class="flex-grow @error('title') is-invalid @enderror" type="text"
                             placeholder="Blog title" name="title" tabindex="0" aria-required="true"
                             value="{{ old('title', $blog->title) }}" required autocomplete="title" autofocus
-                            onchange="stringtoSlug(this.value)">
+                            onkeypress="stringtoSlug(this.value)">
                         @error('title')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -47,7 +47,17 @@
                         @enderror
                     </fieldset>
 
-
+                    <fieldset class="name">
+                        <div class="body-title">Slug <span class="tf-color-1">*</span></div>
+                        <input class="flex-grow @error('slug') is-invalid @enderror" type="text" placeholder="Slug"
+                            name="slug" tabindex="0" value="{{ old('slug',$blog->slug) }}"  onchange="stringtoSlug(this.value)" required autocomplete="name"
+                            autofocus id="slug_input" >
+                        @error('slug')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </fieldset>
                     <fieldset class="name">
                         <div class="body-title">Status</div>
                         <div class="select flex-grow">
@@ -91,7 +101,7 @@
                         <div class="body-title">{{ __('Tags') }} <span class="tf-color-1">*</span></div>
                         <input id="tags" class="flex-grow @error('tags') is-invalid @enderror" type="text" placeholder="Tags"
                             name="tags" tabindex="0" aria-required="true" value="{{ old('tags', $blog->tags) }}"
-                            required autocomplete="tags" autofocus>
+                             autocomplete="tags" autofocus>
                         @error('tags')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

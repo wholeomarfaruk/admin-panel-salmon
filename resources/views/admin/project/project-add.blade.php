@@ -44,11 +44,22 @@
                             </span>
                         @enderror
                     </fieldset>
+                    <fieldset class="name">
+                        <div class="body-title">Slug <span class="tf-color-1">*</span></div>
+                        <input class="flex-grow @error('slug') is-invalid @enderror" type="text" placeholder="Slug"
+                            name="slug" tabindex="0" value="{{ old('slug') }}"  onchange="stringtoSlug(this.value)" required autocomplete="name"
+                            autofocus id="slug_input" >
+                        @error('slug')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </fieldset>
 
 
 
                     <fieldset class="name">
-                        <div class="body-title">{{ __('Flat Number') }} <span class="tf-color-1">*</span></div>
+                        <div class="body-title">{{ __('Flat Number') }} <span class="tf-color-1"></span></div>
                         <input class="flex-grow @error('flat_number') is-invalid @enderror" type="text"
                             placeholder="Flat Number" name="flat_number" tabindex="0" value="{{ old('flat_number') }}"
                             aria-required="true" required autocomplete="flat_number" autofocus>
@@ -60,10 +71,10 @@
                     </fieldset>
 
                     <fieldset class="name">
-                        <div class="body-title">{{ __('Land Area') }} <span class="tf-color-1">*</span></div>
+                        <div class="body-title">{{ __('Land Area') }} <span class="tf-color-1"></span></div>
                         <input class="flex-grow @error('land_area') is-invalid @enderror" type="text"
                             placeholder="Land Area" name="land_area" tabindex="0" value="{{ old('land_area') }}"
-                            aria-required="true" required autocomplete="land_area" autofocus>
+                            aria-required="true"  autocomplete="land_area" autofocus>
                         @error('land_area')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -120,10 +131,10 @@
                     </fieldset>
 
                     <fieldset class="name">
-                        <div class="body-title">{{ __('Number of Car Parking') }} <span class="tf-color-1">*</span></div>
+                        <div class="body-title">{{ __('Number of Car Parking') }} <span class="tf-color-1"></span></div>
                         <input class="flex-grow @error('num_car_parking') is-invalid @enderror" type="text"
                             placeholder="Number of Car Parking" name="num_car_parking" tabindex="0"
-                            value="{{ old('num_car_parking') }}" aria-required="true" required autocomplete="num_car_parking"
+                            value="{{ old('num_car_parking') }}" aria-required="true"  autocomplete="num_car_parking"
                             autofocus>
                         @error('num_car_parking')
                             <span class="invalid-feedback" role="alert">
@@ -179,21 +190,11 @@
                             </span>
                         @enderror
                     </fieldset>
+
                     <fieldset class="name">
-                        <div class="body-title">{{ __('Video URL') }} <span class="tf-color-1">*</span></div>
-                        <input class="flex-grow @error('video') is-invalid @enderror" type="text" placeholder="video url"
-                            name="video" tabindex="0" value="{{ old('video') }}" aria-required="true" required
-                            autocomplete="video" autofocus>
-                        @error('video')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </fieldset>
-                    <fieldset class="name">
-                        <div class="body-title">{{ __('Location') }} <span class="tf-color-1">*</span></div>
+                        <div class="body-title">{{ __('Location') }} <span class="tf-color-1"></span></div>
                         <input class="flex-grow @error('location') is-invalid @enderror" type="text" placeholder="Location"
-                            name="location" tabindex="0" value="{{ old('location') }}" aria-required="true" required
+                            name="location" tabindex="0" value="{{ old('location') }}" aria-required="true"
                             autocomplete="location" autofocus>
                         @error('location')
                             <span class="invalid-feedback" role="alert">
@@ -213,7 +214,7 @@
                         @enderror
                     </fieldset>
 
-                    <fieldset class="name">
+                    {{-- <fieldset class="name">
                         <div class="body-title">{{ __('Project Type') }} <span class="tf-color-1">*</span></div>
                         <div class="select flex-grow">
                             <select class=" @error('project_type') is-invalid @enderror" name="project_type" required>
@@ -231,7 +232,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                    </fieldset>
+                    </fieldset> --}}
 
                     <fieldset class="name">
                         <div class="body-title">{{ __('is Featured') }} <span class="tf-color-1">*</span></div>
@@ -247,7 +248,30 @@
                             </span>
                         @enderror
                     </fieldset>
-
+                    <fieldset>
+                        <div class="body-title">{{ __('Upload Video') }} <span class="tf-color-1">*</span>
+                        </div>
+                        <div class="upload-image flex-grow">
+                            <div class="item" id="imgpreview-video" style="display:none">
+                                <img src="" class="effect8" alt="">
+                            </div>
+                            <div id="upload-file" class="item up-load">
+                                <label class="uploadfile" for="myFile">
+                                    <span class="icon">
+                                        <i class="icon-upload-cloud"></i>
+                                    </span>
+                                    <span class="body-text">{{ __('Drop your videos here or select') }} <span
+                                            class="tf-color">{{ __('click to browse') }}</span></span>
+                                    <input type="file" id="video" name="video" accept="video/*">
+                                </label>
+                            </div>
+                        </div>
+                        @error('video')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </fieldset>
                     <fieldset>
                         <div class="body-title">{{ __('PDF') }} <span class="tf-color-1"></span></div>
                         <div class="upload-image flex-grow">
@@ -266,6 +290,53 @@
                             </div>
                         </div>
                     </fieldset>
+
+                    <fieldset>
+                        <div class="body-title">{{ __('Featured Image') }} <span class="tf-color-1"></span></div>
+                        <div class="upload-image flex-grow">
+                            <div class="item" id="imgpreview-featured" style="display:none">
+                                <img src="" class="effect8" alt="">
+                            </div>
+                            <div id="upload-file" class="item up-load" >
+                                <label class="uploadfile" for="featured_image">
+                                    <span class="icon">
+                                        <i class="icon-upload-cloud"></i>
+                                    </span>
+                                    <span class="body-text">{{ __('Drop your images here or select') }} <span
+                                            class="tf-color">{{ __('click to browse') }}</span></span>
+                                    <input type="file" id="featured_image" name="featured_image"  accept="image/*">
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    @error('featured_image')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <fieldset>
+                        <div class="body-title">{{ __('At a Glance') }} <span class="tf-color-1">*</span></div>
+                        <div class="upload-image flex-grow">
+                            <div class="item" id="imgpreview-ataglanceimage" style="display:none">
+                                <img src="" class="effect8" alt="">
+                            </div>
+                            <div id="upload-file" class="item up-load" >
+                                <label class="uploadfile" for="ataglanceimage">
+                                    <span class="icon">
+                                        <i class="icon-upload-cloud"></i>
+                                    </span>
+                                    <span class="body-text">{{ __('Drop your images here or select') }} <span
+                                            class="tf-color">{{ __('click to browse') }}</span></span>
+                                    <input type="file" id="ataglanceimage" name="ataglanceimage" required accept="image/*">
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    @error('ataglanceimage')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
 
                     <fieldset>
                         <div class="body-title">{{ __('Banner') }} <span class="tf-color-1">*</span></div>
@@ -394,6 +465,36 @@
     </script>
     <script>
 $(function () {
+
+    const videoMaxSize = 100 * 1024 * 1024; // 5MB file size limit
+
+function validateFileSize(input, file) {
+    if (file.size > videoMaxSize) {
+        Swal.fire({
+            icon: "error",
+            title: "File Too Large",
+            text: `The file "${file.name}" exceeds the 100MB limit. Please upload a smaller file.`,
+        });
+        input.value = ""; // Clear the selected file
+        return false;
+    }
+    return true;
+}
+
+$(function () {
+    $('#video').on('change', function () {
+        var file = this.files[0];
+        if (!validateFileSize(this, file)) return;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#imgpreview-video').show();
+            $('#imgpreview-video').html('<video src="' + e.target.result + '" controls></video>');
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+
+})
+
     const maxSize = 10 * 1024 * 1024; // 10MB file size limit
 
     function validateFileSize(input, file) {
@@ -417,6 +518,29 @@ $(function () {
         reader.onload = function (e) {
             $('#imgpreview-pdf').addClass('d-flex justify-content-center align-items-center');
             $('#imgpreview-pdf').html('<span>' + file.name + '</span>');
+        }
+        reader.readAsDataURL(file);
+    });
+
+    $('#featured_image').on('change', function () {
+        var file = this.files[0];
+        if (!validateFileSize(this, file)) return;
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#imgpreview-featured').show();
+            $('#imgpreview-featured img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(file);
+    });
+    $('#ataglanceimage').on('change', function () {
+        var file = this.files[0];
+        if (!validateFileSize(this, file)) return;
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#imgpreview-ataglanceimage').show();
+            $('#imgpreview-ataglanceimage img').attr('src', e.target.result);
         }
         reader.readAsDataURL(file);
     });

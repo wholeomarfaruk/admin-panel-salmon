@@ -157,12 +157,12 @@ class HomeController extends Controller
             'video_url' => 'required|mimetypes:video/*|max:30720',
             'name' => 'required',
             'project_id' => 'required',
-            'address' => 'required',
+          
 
         ]);
         $explore = new Explore();
         $explore->name = $request->name;
-        $explore->address = $request->address ?? null;
+
         $explore->project_id = $request->project_id;
         $explore->save();
 
@@ -200,14 +200,14 @@ class HomeController extends Controller
 
             'name' => 'required',
             'project_id' => 'required',
-            'address' => 'required',
+
 
         ]);
 
 
         $explore = Explore::find($id);
         $explore->name = $request->name;
-        $explore->address = $request->address ?? null;
+
         $explore->project_id = $request->project_id;
         $explore->save();
 

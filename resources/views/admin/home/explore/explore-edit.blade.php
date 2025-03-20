@@ -46,17 +46,7 @@
                             </span>
                         @enderror
                     </fieldset>
-                    <fieldset class="name">
-                        <div class="body-title">{{ __('Address') }} <span class="tf-color-1">*</span></div>
-                        <input class="flex-grow @error('address') is-invalid @enderror" type="text" placeholder="Address"
-                            name="address" tabindex="0" value="{{ old('address',$explore->address) }}" aria-required="true"
-                            autocomplete="address" autofocus >
-                        @error('address')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </fieldset>
+                 
 
                     <fieldset class="name">
                         <div class="body-title">{{ __('Project') }} <span class="tf-color-1">*</span></div>

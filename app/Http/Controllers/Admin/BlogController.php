@@ -39,14 +39,17 @@ class BlogController extends Controller
         $request->validate([
             "title"=> "required",
             "status"=> "required",
-            "tags"=> "required",
-            "thumbnail"=> "required",
+
             "content"=> "required",
 
         ]);
 
-        // Check if the slug already exists
+
         $slug = Str::slug($request->title);
+        // Check if the slug already exists
+        if($request->has("slug")){
+            $slug = $request->slug;
+        }
         $existingBlog = Blog::where('slug', $slug)->first();
         if ($existingBlog) {
             // Append a unique identifier to the slug
@@ -133,6 +136,8 @@ class BlogController extends Controller
             return redirect()->route("admin.blog.list")->with("error", "Blog not found");
         }
 
+        return $request->all();
+
         try {
             //code...
 
@@ -140,7 +145,11 @@ class BlogController extends Controller
 
             $blog->title = $request->title ?? $blog->title;
 
-                $slug = Str::slug($request->title);
+                  $slug = Str::slug($request->title);
+                    // Check if the slug already exists
+                    if($request->has("slug")){
+                        $slug = $request->slug;
+                    }
                 if(Blog::where('slug', $slug)->where('id', '!=', $id)->exists()){
                     $slug = $slug.'-';
                 }
@@ -154,10 +163,11 @@ class BlogController extends Controller
             if (isset($request->categories)) {
                 $blog->category_id = $request->categories ?? $blog->categories;
             }
-            if (isset($request->tags)) {
 
-                $blog->tags = $request->tags ?? $blog->tags;
-            }
+
+                $blog->tags = $request->tags;
+                // return request()->all();
+
             if (isset($request->status)) {
                 $blog->status = $request->status ?? $blog->status;
             }
@@ -215,11 +225,13 @@ class BlogController extends Controller
     // delete
     public function delete($id)
     {
+
         $project = Blog::find($id);
 
         if (!$project) {
             return redirect()->back()->with('error', 'Blog not found');
         }
+
 
 
 

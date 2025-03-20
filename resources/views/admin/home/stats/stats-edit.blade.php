@@ -80,16 +80,16 @@
 
                     <fieldset class="name">
                         <div class="body-title">{{ __('stats tile '). $index + 1 }} <span class="tf-color-1">*</span></div>
-                        <input class="flex-grow " type="text" placeholder="stats title"
+                        <input class="flex-grow " type="text" placeholder="stats title" required
                             name="stats[{{ $index }}][title]" tabindex="0" value="{{ $item->title }}">
                     </fieldset>
                     <fieldset class="name">
                         <div class="body-title">{{ __('stats number '). $index + 1 }} <span class="tf-color-1">*</span></div>
-                        <input class="flex-grow " type="text" placeholder="stats number"
+                        <input class="flex-grow " type="text" placeholder="stats number" required
                             name="stats[{{ $index }}][number]" tabindex="0" value="{{ $item->number }}" >
                     </fieldset>
                     <fieldset class="name">
-                        <div class="body-title">{{ __('stats number Prefix '). $index + 1 }} <span class="tf-color-1">*</span></div>
+                        <div class="body-title">{{ __('stats number Prefix '). $index + 1 }} <span class="tf-color-1"></span></div>
                         <input class="flex-grow " type="text" placeholder="number Prefix"
                             name="stats[{{ $index }}][number_prefix]" tabindex="0" value="{{ $item->number_prefix }}">
                     </fieldset>

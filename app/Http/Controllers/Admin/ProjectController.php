@@ -43,19 +43,19 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             // 'slug' => 'required|string|max:255|unique:projects',
-            'flat_number' => 'required|string|max:255',
-            'land_area' => 'required|string|max:255',
+            // 'flat_number' => 'required|string|max:255',
+            // 'land_area' => 'required|string|max:255',
             'facing_land' => 'required|string|max:255',
             'floor_number' => 'required|string|max:255',
             'front_road' => 'required|string|max:255',
             'square_ft' => 'required|string|max:255',
-            'num_car_parking' => 'required|string|max:255',
+            // 'num_car_parking' => 'required|string|max:255',
             'building_type' => 'required|string|max:255',
             'bed_bath_balcony_lift' => 'required|string|max:255',
             // 'description' => 'required|string',
             // 'map_data' => 'required|string|max:255',
 
-            'project_type' => 'required',
+
             'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg,gif,webp',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg,gif,webp',
             'amenities_images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg,gif,webp',
@@ -63,7 +63,7 @@ class ProjectController extends Controller
             // 'pdf' => 'required|mimes:pdf|max:2048',
             'is_featured' => 'required',
 
-            'location'=> 'required',
+            // 'location'=> 'required',
             'project_status'=> 'required',
 
         ]);
@@ -77,23 +77,23 @@ class ProjectController extends Controller
             $slug = $slug.'-';
         }
         $project->slug = $slug;
-        $project->flat_number = $request->input('flat_number');
-        $project->land_area = $request->input('land_area');
+        $project->flat_number = $request->input('flat_number') ?? null;
+        $project->land_area = $request->input('land_area') ?? null;
         $project->facing_land = $request->input('facing_land');
         $project->floor_number = $request->input('floor_number');
         $project->front_road = $request->input('front_road');
         $project->square_ft = $request->input('square_ft');
-        $project->num_car_parking = $request->input('num_car_parking');
+        $project->num_car_parking = $request->input('num_car_parking') ?? null;
         $project->building_type = $request->input('building_type');
         $project->bed_bath_balcony_lift = $request->input('bed_bath_balcony_lift');
         $project->description = $request->input('description') ?? null;
         $project->map_data = $request->input('map_data') ?? null;
 
-        $project->project_type = $request->input('project_type');
+
         $project->is_featured = $request->input('is_featured');
         $project->video = $request->input('video') ?? null;
 
-        $project->location= $request->input('location');
+        $project->location= $request->input('location') ?? null;
         $project->project_status= $request->input('project_status');
 
         $project->save();
@@ -224,19 +224,19 @@ class ProjectController extends Controller
             $request->validate([
                 'title' => 'required|string|max:255',
                 // 'slug' => 'required|string|max:255|unique:projects,slug,'.$id,
-                'flat_number' => 'required|string|max:255',
-                'land_area' => 'required|string|max:255',
+                // 'flat_number' => 'required|string|max:255',
+                // 'land_area' => 'required|string|max:255',
                 'facing_land' => 'required|string|max:255',
                 'floor_number' => 'required|string|max:255',
                 'front_road' => 'required|string|max:255',
                 'square_ft' => 'required|string|max:255',
-                'num_car_parking' => 'required|string|max:255',
+                // 'num_car_parking' => 'required|string|max:255',
                 'building_type' => 'required|string|max:255',
                 'bed_bath_balcony_lift' => 'required|string|max:255',
                 // 'description' => 'required|string',
                 // 'map_data' => 'required|string|max:255',
 
-                'project_type' => 'required',
+
                 'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
                 'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
                 'amenities_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
@@ -256,20 +256,20 @@ class ProjectController extends Controller
                 $slug = $slug.'-';
             }
             $project->slug = $slug;
-            $project->flat_number = $request->input('flat_number');
-            $project->land_area = $request->input('land_area');
+            $project->flat_number = $request->input('flat_number') ?? null;
+            $project->land_area = $request->input('land_area') ?? null;
             $project->facing_land = $request->input('facing_land');
             $project->floor_number = $request->input('floor_number');
             $project->front_road = $request->input('front_road');
             $project->square_ft = $request->input('square_ft');
-            $project->num_car_parking = $request->input('num_car_parking');
+            $project->num_car_parking = $request->input('num_car_parking') ?? null;
             $project->building_type = $request->input('building_type');
             $project->bed_bath_balcony_lift = $request->input('bed_bath_balcony_lift');
             $project->description = $request->input('description') ?? null;
             $project->map_data = $request->input('map_data') ?? null;
 
 
-            $project->project_type = $request->input('project_type');
+
             $project->is_featured = $request->input('is_featured');
             $project->video = $request->input('video') ?? null;
 

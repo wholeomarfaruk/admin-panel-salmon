@@ -30,33 +30,22 @@
             </div>
             <!-- new-Blog -->
             <div class="wg-box">
-                <form class="form-new-product form-style-1 needs-validation" action="{{ route('admin.home.explore.store') }}"
-                    method="POST" enctype="multipart/form-data" novalidate>
+                <form class="form-new-product form-style-1 needs-validation"
+                    action="{{ route('admin.home.explore.store') }}" method="POST" enctype="multipart/form-data" novalidate>
                     @csrf
 
                     <fieldset class="name">
                         <div class="body-title">{{ __('Name') }} <span class="tf-color-1">*</span></div>
-                        <input class="flex-grow @error('name') is-invalid @enderror" type="text"
-                            placeholder="Name" name="name" tabindex="0" aria-required="true"
-                            value="{{ old('name') }}" required autocomplete="name" autofocus
-                            >
+                        <input class="flex-grow @error('name') is-invalid @enderror" type="text" placeholder="Name"
+                            name="name" tabindex="0" aria-required="true" value="{{ old('name') }}" required
+                            autocomplete="name" autofocus>
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </fieldset>
-                    <fieldset class="name">
-                        <div class="body-title">{{ __('Address') }} <span class="tf-color-1">*</span></div>
-                        <input class="flex-grow @error('address') is-invalid @enderror" type="text" placeholder="Address"
-                            name="address" tabindex="0" value="{{ old('address') }}" aria-required="true"
-                            autocomplete="address" autofocus >
-                        @error('address')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </fieldset>
+
 
                     <fieldset class="name">
                         <div class="body-title">{{ __('Project') }} <span class="tf-color-1">*</span></div>
@@ -64,7 +53,8 @@
                             aria-required="true" required autocomplete="project_id" autofocus>
                             <option value="">{{ __('Select Project') }}</option>
                             @foreach ($projects as $project)
-                                <option value="{{ $project->id }}" {{ old('project_id', '') == $project->id ? 'selected' : '' }}>{{ $project->title }}</option>
+                                <option value="{{ $project->id }}" {{ old('project_id', '') == $project->id ? 'selected' : '' }}>
+                                    {{ $project->title }}</option>
                             @endforeach
                         </select>
                         @error('project_id')
@@ -93,7 +83,7 @@
                                 </label>
                             </div>
                         </div>
-                        @error('image')
+                        @error('video_url')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -114,27 +104,27 @@
 @push('scripts')
 
     <script>
-                    const maxSize = 100 * 1024 * 1024; // 5MB file size limit
+        const maxSize = 100 * 1024 * 1024; // 5MB file size limit
 
-function validateFileSize(input, file) {
-    if (file.size > maxSize) {
-        Swal.fire({
-            icon: "error",
-            title: "File Too Large",
-            text: `The file "${file.name}" exceeds the 100MB limit. Please upload a smaller file.`,
-        });
-        input.value = ""; // Clear the selected file
-        return false;
-    }
-    return true;
-}
+        function validateFileSize(input, file) {
+            if (file.size > maxSize) {
+                Swal.fire({
+                    icon: "error",
+                    title: "File Too Large",
+                    text: `The file "${file.name}" exceeds the 100MB limit. Please upload a smaller file.`,
+                });
+                input.value = ""; // Clear the selected file
+                return false;
+            }
+            return true;
+        }
 
-        $(function() {
-            $('#myFile').on('change', function() {
+        $(function () {
+            $('#myFile').on('change', function () {
                 var file = this.files[0];
                 if (!validateFileSize(this, file)) return;
                 var reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     $('#imgpreview').show();
                     $('#imgpreview').html('<video src="' + e.target.result + '" controls></video>');
                 }

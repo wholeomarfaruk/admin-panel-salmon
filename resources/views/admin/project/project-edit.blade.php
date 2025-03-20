@@ -49,12 +49,23 @@
                     </fieldset>
 
 
+                    <fieldset class="name">
+                        <div class="body-title">Slug <span class="tf-color-1">*</span></div>
+                        <input class="flex-grow @error('slug') is-invalid @enderror" type="text" placeholder="Slug"
+                            name="slug" tabindex="0" value="{{ old('slug', $project->slug) }}"  onchange="stringtoSlug(this.value)" required autocomplete="name"
+                            autofocus id="slug_input" >
+                        @error('slug')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </fieldset>
 
                     <fieldset class="name">
-                        <div class="body-title">{{ __('Flat Number') }} <span class="tf-color-1">*</span></div>
+                        <div class="body-title">{{ __('Flat Number') }} <span class="tf-color-1"></span></div>
                         <input class="flex-grow @error('flat_number') is-invalid @enderror" type="text"
                             placeholder="Flat Number" name="flat_number" tabindex="0" value="{{ old('flat_number', $project->flat_number) }}"
-                            aria-required="true" required autocomplete="flat_number" autofocus>
+                            aria-required="true"  autocomplete="flat_number" autofocus>
                         @error('flat_number')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -63,10 +74,10 @@
                     </fieldset>
 
                     <fieldset class="name">
-                        <div class="body-title">{{ __('Land Area') }} <span class="tf-color-1">*</span></div>
+                        <div class="body-title">{{ __('Land Area') }} <span class="tf-color-1"></span></div>
                         <input class="flex-grow @error('land_area') is-invalid @enderror" type="text"
                             placeholder="Land Area" name="land_area" tabindex="0" value="{{ old('land_area', $project->land_area) }}"
-                            aria-required="true" required autocomplete="land_area" autofocus>
+                            aria-required="true"  autocomplete="land_area" autofocus>
                         @error('land_area')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -123,7 +134,7 @@
                     </fieldset>
 
                     <fieldset class="name">
-                        <div class="body-title">{{ __('Number of Car Parking') }} <span class="tf-color-1">*</span></div>
+                        <div class="body-title">{{ __('Number of Car Parking') }} <span class="tf-color-1"></span></div>
                         <input class="flex-grow @error('num_car_parking') is-invalid @enderror" type="text"
                             placeholder="Number of Car Parking" name="num_car_parking" tabindex="0"
                             value="{{ old('num_car_parking', $project->num_car_parking) }}" aria-required="true" required autocomplete="num_car_parking"
@@ -184,9 +195,9 @@
                     </fieldset>
 
                     <fieldset class="name">
-                        <div class="body-title">{{ __('Location') }} <span class="tf-color-1">*</span></div>
+                        <div class="body-title">{{ __('Location') }} <span class="tf-color-1"></span></div>
                         <input class="flex-grow @error('location') is-invalid @enderror" type="text" placeholder="Location"
-                            name="location" tabindex="0" value="{{ old('location', $project->location) }}" aria-required="true" required
+                            name="location" tabindex="0" value="{{ old('location', $project->location) }}" aria-required="true"
                             autocomplete="location" autofocus>
                         @error('location')
                             <span class="invalid-feedback" role="alert">
@@ -207,27 +218,7 @@
                         @enderror
                     </fieldset>
 
-                    <fieldset class="name">
-                        <div class="body-title">{{ __('Project Type') }} <span class="tf-color-1">*</span></div>
-                        <div class="select flex-grow">
-                            <select class=" @error('project_type') is-invalid @enderror" name="project_type" required>
-                                <option value="" {{ old('project_type', $project->project_type) == '' ? 'selected' : '' }}>Select Type</option>
-                                <option value="{{ \App\Enums\ProjectType::COMMERCIAL->value }}"
-                                    {{ old('project_type', $project->project_type) == \App\Enums\ProjectType::COMMERCIAL->value ? 'selected' : '' }}>
-                                    {{ \App\Enums\ProjectType::COMMERCIAL->name }}
-                                </option>
-                                <option value="{{ \App\Enums\ProjectType::RESIDENTIAL->value }}"
-                                    {{ old('project_type', $project->project_type) == \App\Enums\ProjectType::RESIDENTIAL->value ? 'selected' : '' }}>
-                                    {{ \App\Enums\ProjectType::RESIDENTIAL->name }}
-                                </option>
-                            </select>
-                        </div>
-                        @error('project_type')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </fieldset>
+
                     <fieldset class="name">
                         <div class="body-title">{{ __('is Featured') }} <span class="tf-color-1">*</span></div>
                         <div class="select flex-grow">
