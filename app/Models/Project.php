@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\ModelType;
 use App\Enums\ProjectFileTypes;
+use App\Enums\UploadFileTypes;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
@@ -27,7 +28,10 @@ class Project extends Model
     //     'description',
     //     'thumbnail',
     // ];
-
+    public function video()
+    {
+        return $this->hasOne(FileUpload::class, 'model_id')->where('model_type', ModelType::Project->value)->where('file_for', UploadFileTypes::Video->value);
+    }
     public function files()
     {
         return $this->hasMany(FileUpload::class, 'model_id')
@@ -35,6 +39,14 @@ class Project extends Model
     }
 
 
+    public function ataglanceimage()
+    {
+        return $this->hasOne(FileUpload::class, 'model_id')->where('model_type', ModelType::Project->value)->where('file_for', ProjectFileTypes::ataglanceimage->value);
+    }
+    public function featured_image()
+    {
+        return $this->hasOne(FileUpload::class, 'model_id')->where('model_type', ModelType::Project->value)->where('file_for', ProjectFileTypes::featured_image->value);
+    }
     public function thumbnail()
     {
         return $this->hasOne(FileUpload::class, 'model_id')->where('model_type', ModelType::Project->value)->where('file_for', ProjectFileTypes::thumbnail->value);

@@ -56,6 +56,7 @@ Route::post("/jobs/applicants/dropcv",[JobController::class,"dropCV"])->name("jo
 Route::get('/careers', [JobController::class, 'career'])->name("job.career");
 Route::get('/our-story', [OurStoryController::class, 'ourStory'])->name("ourstory");
 Route::get('/why-salmon', [WhySalmonController::class, 'whySalmon'])->name("whysalmon");
+Route::get('/popup', [HomeController::class, 'popup'])->name("popup");
 
 
 //  /api/v1/auth name='api.v1.'

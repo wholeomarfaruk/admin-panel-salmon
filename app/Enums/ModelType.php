@@ -13,4 +13,5 @@ enum ModelType:int
     case Stats = 7;
     case OurStory = 8;
     case Slider = 9;
+    case Popup = 10;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Models\PopupPage;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,7 +33,19 @@ class HomeController extends Controller
         }
 
         return response()->json([
+            "status" => "success",
+            'message' => 'site settings found',
             "data" => $data,
+        ], 200);
+    }
+
+    public function popup(){
+        $popup = PopupPage::with('image')->get();
+
+        return response()->json([
+            "status" => "success",
+            'message' => 'popup page found',
+            "data" => $popup,
         ], 200);
     }
 }

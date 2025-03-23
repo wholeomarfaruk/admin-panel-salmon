@@ -108,6 +108,22 @@
                             </span>
                         @enderror
                     </fieldset>
+                    <fieldset class="name">
+                        <div class="body-title">{{ __('is Featured') }} <span class="tf-color-1">*</span></div>
+                        <div class="select flex-grow">
+                            <select class=" @error('is_featured') is-invalid @enderror" name="is_featured" required>
+                                <option value="0" {{ old('is_featured', $blog->is_featured) == '0' ? 'selected' : '' }}>No
+                                </option>
+                                <option value="1" {{ old('is_featured', $blog->is_featured) == '1' ? 'selected' : '' }}>Yes
+                                </option>
+                            </select>
+                        </div>
+                        @error('is_featured')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </fieldset>
 
                   <fieldset>
                         <div class="body-title">{{ __('Thumbnail') }} <span class="tf-color-1"></span></div>

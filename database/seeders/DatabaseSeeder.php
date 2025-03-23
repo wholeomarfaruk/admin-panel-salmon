@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             ProjectStatusSeeder::class,
             StatsSeeder::class,
             OurStorySeeder::class,
+            PopupPageSeeder::class,
         ]);
 
 

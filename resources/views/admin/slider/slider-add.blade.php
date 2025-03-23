@@ -5,7 +5,7 @@
     <div class="main-content-inner">
         <div class="main-content-wrap">
             <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>Add Slide</h3>
+                <h3>Add Card</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
                         <a href="#">
@@ -17,14 +17,14 @@
                     </li>
                     <li>
                         <a href="{{ route('admin.slider.list') }}">
-                            <div class="text-tiny">Slider</div>
+                            <div class="text-tiny">Card</div>
                         </a>
                     </li>
                     <li>
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">New Slide</div>
+                        <div class="text-tiny">New Card</div>
                     </li>
                 </ul>
             </div>
@@ -46,7 +46,7 @@
                             </span>
                         @enderror
                     </fieldset>
-                    
+
                     <fieldset class="name">
                         <div class="body-title">{{ __('Description') }} <span class="tf-color-1">*</span></div>
                         <input class="flex-grow @error('description') is-invalid @enderror" type="text"

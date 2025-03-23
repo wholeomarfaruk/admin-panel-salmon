@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ManagementController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\OurStoryController;
+use App\Http\Controllers\Admin\PopupController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\FileUploadControler;
 
@@ -187,6 +188,16 @@ Route::middleware(['admin'])->name('admin.')->prefix('admin')->group(function ()
     Route::put("/jobs/update/{id}",[JobController::class,"update"])->name("job.update");
     Route::delete("/jobs/delete/{id}",[JobController::class,"delete"])->name("job.delete");
     //Career Jobs End =================================================================
+
+    //Popup Page Start =================================================================
+    Route::get("/popup/edit/{id}",[PopupController::class, "edit"])->name("popup.edit");
+    Route::put("/popup/update/{id}",[PopupController::class,"update"])->name("popup.update");
+
+    Route::get("/popups",[PopupController::class, "index"])->name("popup.list");
+    Route::get("/popups/add",[PopupController::class,"add"])->name("popup.add");
+    Route::post("/popups/add",[PopupController::class,"store"])->name("popup.store");
+    Route::delete("/popups/delete/{id}",[PopupController::class,"delete"])->name("popup.delete");
+    //Popup Page End =================================================================
 
 });
 

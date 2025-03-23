@@ -31,7 +31,7 @@
     <div class="main-content-inner">
         <div class="main-content-wrap">
             <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>Slider</h3>
+                <h3>Cards</h3>
                 <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                     <li>
                         <a href="{{ route('admin.dashboard.index') }}">
@@ -42,7 +42,7 @@
                         <i class="icon-chevron-right"></i>
                     </li>
                     <li>
-                        <div class="text-tiny">Slider</div>
+                        <div class="text-tiny">Cards</div>
                     </li>
                 </ul>
             </div>

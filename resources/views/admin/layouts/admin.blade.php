@@ -167,8 +167,6 @@
                                                 <div class="text">Blogs</div>
                                             </a>
                                         </li>
-
-
                                     </ul>
                                 </li>
                                 <li class="menu-item has-children {{request()->is('admin/home*') || request()->is('admin/home/sliders*') || request()->is('admin/project-statuses*') ? 'active' : ''}}">
@@ -203,7 +201,7 @@
                                     <ul class="sub-menu">
                                         <li class="sub-menu-item">
                                             <a href="{{route('admin.slider.list')}}" class="">
-                                                <div class="text">Slider</div>
+                                                <div class="text">Cards</div>
                                             </a>
                                         </li>
 
@@ -243,6 +241,7 @@
 
 
 
+
                                 <li class="menu-item">
                                     <a href="{{ route('admin.member.list') }}" class="">
                                         <div class="icon"><i class="icon-users"></i></div>
@@ -253,6 +252,12 @@
                                     <a href="{{ route('admin.management.list') }}" class="">
                                         <div class="icon"><i class="icon-users"></i></div>
                                         <div class="text">Managements</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="{{ route('admin.popup.list') }}" class="">
+                                        <div class="icon"><i class="icon-layers"></i></div>
+                                        <div class="text">PopUp</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">

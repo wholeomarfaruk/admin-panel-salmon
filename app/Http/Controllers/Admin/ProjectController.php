@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\ModelType;
+use App\Enums\UploadFileTypes;
 use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\helper\FileController;
@@ -65,6 +66,8 @@ class ProjectController extends Controller
 
             // 'location'=> 'required',
             'project_status'=> 'required',
+            'ataglanceimage' => 'required|image|mimes:jpeg,png,jpg,gif,svg,gif,webp',
+
 
         ]);
 
@@ -73,6 +76,10 @@ class ProjectController extends Controller
         $project = new Project();
         $project->title = $request->input('title');
         $slug = Str::slug($request->title);
+        if($request->has('slug')) {
+            $slug = Str::slug($request->slug);
+        }
+
         if(Project::where('slug', $slug)->exists()){
             $slug = $slug.'-';
         }
@@ -91,7 +98,7 @@ class ProjectController extends Controller
 
 
         $project->is_featured = $request->input('is_featured');
-        $project->video = $request->input('video') ?? null;
+
 
         $project->location= $request->input('location') ?? null;
         $project->project_status= $request->input('project_status');
@@ -117,6 +124,56 @@ class ProjectController extends Controller
                 'size' => $fileSize,
             ]);
         }
+
+        if ($request->hasFile('video')) {
+            $path = 'uploads/projects/videos/';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $fileSize = $request->file('video')->getSize(); // Get size before moving
+
+            $imageRename = Str::slug($project->slug) . "_" . Str::uuid() . "_size_." . $request->file('video')->getClientOriginalExtension();
+            $request->file('video')->move($path, $imageRename);
+
+            FileHelper::uploadFile($path . $imageRename, 'video', ModelType::Project->value, $project->id, [
+                'name' => $project->title,
+                'type' => UploadFileTypes::Video->value,
+                'size' => $fileSize,
+            ]);
+        }
+        if ($request->hasFile('featured_image')) {
+            $path = 'uploads/projects/featured_images/';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $fileSize = $request->file('featured_image')->getSize(); // Get size before moving
+
+            $imageRename = Str::slug($request->slug) . "_" . Str::uuid() . "_size_." . $request->file('featured_image')->getClientOriginalExtension();
+            $request->file('featured_image')->move($path, $imageRename);
+
+            FileHelper::uploadFile($path . $imageRename, 'featured_image', ModelType::Project->value, $project->id, [
+                'name' => $request->title,
+                'type' => 'image',
+                'size' => $fileSize,
+            ]);
+        }
+        if ($request->hasFile('ataglanceimage')) {
+            $path = 'uploads/projects/ataglanceimages/';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $fileSize = $request->file('ataglanceimage')->getSize(); // Get size before moving
+
+            $imageRename = Str::slug($request->slug) . "_" . Str::uuid() . "_size_." . $request->file('ataglanceimage')->getClientOriginalExtension();
+            $request->file('ataglanceimage')->move($path, $imageRename);
+
+            FileHelper::uploadFile($path . $imageRename, 'ataglanceimage', ModelType::Project->value, $project->id, [
+                'name' => $request->title,
+                'type' => 'image',
+                'size' => $fileSize,
+            ]);
+        }
+
         if ($request->hasFile('banner')) {
             $path = 'uploads/projects/banners/';
             if (!file_exists($path)) {
@@ -245,6 +302,8 @@ class ProjectController extends Controller
                 'is_featured' => 'required',
                 'location'=> 'required',
                 'project_status'=> 'required',
+
+                'ataglanceimage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
             ]);
 
             $project = Project::findOrFail($id);
@@ -271,12 +330,77 @@ class ProjectController extends Controller
 
 
             $project->is_featured = $request->input('is_featured');
-            $project->video = $request->input('video') ?? null;
+
 
             $project->location= $request->input('location');
             $project->project_status= $request->input('project_status');
 
             $project->save();
+
+            // update video
+            // update video
+            if ($request->hasFile('video')) {
+                $oldVideo = $project->video;
+                if ($oldVideo) {
+                    FileHelper::deleteFile($oldVideo->id);
+                }
+                $path = 'uploads/projects/videos/';
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+                $fileSize = $request->file('video')->getSize(); // Get size before moving
+
+                $imageRename = Str::slug($request->slug) . "_" . Str::uuid() . "_size_." . $request->file('video')->getClientOriginalExtension();
+                $request->file('video')->move($path, $imageRename);
+
+                FileHelper::uploadFile($path . $imageRename, 'video', ModelType::Project->value, $project->id, [
+                    'name' => $request->title,
+                    'type' => UploadFileTypes::Video->value,
+                    'size' => $fileSize,
+                ]);
+            }
+            // update featured image
+            if ($request->hasFile('featured_image')) {
+                $oldFeaturedImage = $project->featured_image;
+                if ($oldFeaturedImage) {
+                    FileHelper::deleteFile($oldFeaturedImage->id);
+                }
+                $path = 'uploads/projects/featured_images/';
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+                $fileSize = $request->file('featured_image')->getSize(); // Get size before moving
+
+                $imageRename = Str::slug($request->slug) . "_" . Str::uuid() . "_size_." . $request->file('featured_image')->getClientOriginalExtension();
+                $request->file('featured_image')->move($path, $imageRename);
+
+                FileHelper::uploadFile($path . $imageRename, 'featured_image', ModelType::Project->value, $project->id, [
+                    'name' => $request->title,
+                    'type' => 'image',
+                    'size' => $fileSize,
+                ]);
+            }
+            // update ataglance image
+            if ($request->hasFile('ataglanceimage')) {
+                $oldAtaglanceImage = $project->ataglanceimage;
+                if ($oldAtaglanceImage) {
+                    FileHelper::deleteFile($oldAtaglanceImage->id);
+                }
+                $path = 'uploads/projects/ataglanceimages/';
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+                $fileSize = $request->file('ataglanceimage')->getSize(); // Get size before moving
+
+                $imageRename = Str::slug($request->slug) . "_" . Str::uuid() . "_size_." . $request->file('ataglanceimage')->getClientOriginalExtension();
+                $request->file('ataglanceimage')->move($path, $imageRename);
+
+                FileHelper::uploadFile($path . $imageRename, 'ataglanceimage', ModelType::Project->value, $project->id, [
+                    'name' => $request->title,
+                    'type' => 'image',
+                    'size' => $fileSize,
+                ]);
+            }
 
             // Update PDF
             if ($request->hasFile('pdf')) {

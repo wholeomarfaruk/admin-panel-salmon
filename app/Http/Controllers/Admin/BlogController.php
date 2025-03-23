@@ -39,6 +39,7 @@ class BlogController extends Controller
         $request->validate([
             "title"=> "required",
             "status"=> "required",
+            'is_featured'=> 'required',
 
             "content"=> "required",
 
@@ -63,6 +64,7 @@ class BlogController extends Controller
         $blog->content = $request->content ?? null;
         $blog->category_id = $request->categories ?? null;
         $blog->tags = $request->tags ?? null;
+        $blog->is_featured= $request->is_featured ?? 0;
 
         $blog->save();
 
@@ -128,6 +130,7 @@ class BlogController extends Controller
             'title' => 'required',
             'content' => 'required',
             'status'=> 'required',
+            'is_featured'=> 'required',
         ]);
 
         // Check if the slug already exists
@@ -136,7 +139,6 @@ class BlogController extends Controller
             return redirect()->route("admin.blog.list")->with("error", "Blog not found");
         }
 
-        return $request->all();
 
         try {
             //code...
@@ -162,6 +164,10 @@ class BlogController extends Controller
 
             if (isset($request->categories)) {
                 $blog->category_id = $request->categories ?? $blog->categories;
+            }
+
+            if (isset($request->is_featured)) {
+                $blog->is_featured = $request->is_featured ?? $blog->is_featured;
             }
 
 

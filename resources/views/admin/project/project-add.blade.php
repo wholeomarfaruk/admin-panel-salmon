@@ -37,7 +37,7 @@
                         <div class="body-title">{{ __('Title') }} <span class="tf-color-1">*</span></div>
                         <input class="flex-grow @error('title') is-invalid @enderror" type="text" placeholder="Title"
                             name="title" tabindex="0" aria-required="true" value="{{ old('title') }}" required
-                            autocomplete="title" autofocus  onchange="stringtoSlug(this.value)">
+                            autocomplete="title" autofocus  onkeyup="stringtoSlug(this.value)">
                         @error('title')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -248,6 +248,7 @@
                             </span>
                         @enderror
                     </fieldset>
+
                     <fieldset>
                         <div class="body-title">{{ __('Upload Video') }} <span class="tf-color-1">*</span>
                         </div>
@@ -256,7 +257,7 @@
                                 <img src="" class="effect8" alt="">
                             </div>
                             <div id="upload-file" class="item up-load">
-                                <label class="uploadfile" for="myFile">
+                                <label class="uploadfile" for="video">
                                     <span class="icon">
                                         <i class="icon-upload-cloud"></i>
                                     </span>
@@ -272,6 +273,7 @@
                             </span>
                         @enderror
                     </fieldset>
+
                     <fieldset>
                         <div class="body-title">{{ __('PDF') }} <span class="tf-color-1"></span></div>
                         <div class="upload-image flex-grow">
@@ -468,7 +470,7 @@ $(function () {
 
     const videoMaxSize = 100 * 1024 * 1024; // 5MB file size limit
 
-function validateFileSize(input, file) {
+function validateVideoFileSize(input, file) {
     if (file.size > videoMaxSize) {
         Swal.fire({
             icon: "error",
@@ -484,7 +486,7 @@ function validateFileSize(input, file) {
 $(function () {
     $('#video').on('change', function () {
         var file = this.files[0];
-        if (!validateFileSize(this, file)) return;
+        if (!validateVideoFileSize(this, file)) return;
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#imgpreview-video').show();
@@ -494,6 +496,7 @@ $(function () {
     });
 
 })
+
 
     const maxSize = 10 * 1024 * 1024; // 10MB file size limit
 
@@ -521,6 +524,7 @@ $(function () {
         }
         reader.readAsDataURL(file);
     });
+
 
     $('#featured_image').on('change', function () {
         var file = this.files[0];

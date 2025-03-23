@@ -69,6 +69,10 @@ class JobController extends Controller
 
     public function career(){
         $jobs = Career::all();
+        foreach($jobs as $job){
+            $job->requirements = json_decode($job->requirements, true);
+        }
+       
         return response()->json([
             'status' => 'success',
             'message' => 'careers found',

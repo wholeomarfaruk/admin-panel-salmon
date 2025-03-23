@@ -9,4 +9,6 @@ enum ProjectFileTypes: string
     case gallery = 'gallery';
     case amenities_images = 'amenities_images';
     case pdf = 'pdf';
+    case ataglanceimage = 'ataglanceimage';
+    case featured_image = 'featured_image';
 }

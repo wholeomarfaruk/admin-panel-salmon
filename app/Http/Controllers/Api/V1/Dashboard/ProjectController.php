@@ -18,7 +18,7 @@ class ProjectController extends Controller
 
     // Guest Project Data
     public function projects(){
-        $projects = Project::with(['banner', 'thumbnail', 'pdf', 'amenities_images', 'gallery'])->paginate(10);
+        $projects = Project::with(['banner', 'thumbnail', 'pdf', 'amenities_images', 'gallery','video','ataglanceimage','featured_image'])->paginate(10);
 
         return response()->json([
             'status' => 'success',
@@ -28,7 +28,7 @@ class ProjectController extends Controller
 
     // Guest Single Project Data
     public function project($id){
-        $project = Project::with(['banner', 'thumbnail', 'pdf', 'amenities_images', 'gallery'])->where('id', $id)->first();
+        $project = Project::with(['banner', 'thumbnail', 'pdf', 'amenities_images', 'gallery','video','ataglanceimage','featured_image'])->where('id', $id)->first();
 
         if(!$project){
             return response()->json([
